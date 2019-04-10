@@ -42,7 +42,7 @@ class amacube extends rcube_plugin
 			// Check accounts database for filter enabled
 			if (isset($this->rc->amacube->filter) && $this->rc->amacube->filter == false) { return; }
 			// Write default user & config
-			if ($this->amacube->config->write_to_db()) {
+			if ($this->amacube->config->policy_setting['policy_name'] !== NULL && filter_var($this->amacube->config->policy_setting['user_email'],FILTER_VALIDATE_EMAIL)  && $this->amacube->config->write_to_db()) {
     				$this->rc->amacube->feedback[] = array('type' => 'confirmation', 'message' => 'policy_default_message');
 			}
 		}
